@@ -13,6 +13,10 @@ docker run --rm --net=host --name freeswitch freeswitch:latest
 # without host network
 docker run --rm --name freeswitch freeswitch:latest
 
+docker run --rm --name freeswitch -p 5060:5060/tcp -p 5060:5060/udp -p 5080:5080/tcp -p 5080:5080/udp -p 8021:8021/tcp -p 7443:7443/tcp freeswitch:latest
+
+CID=$(sudo docker run -d --rm --name freeswitch -p 5060:5060/tcp -p 5060:5060/udp -p 5080:5080/tcp -p 5080:5080/udp -p 8021:8021/tcp -p 7443:7443/tcp freeswitch:latest)
+
 # connect via fs_cli
 docker exec -i -t freeswitch /usr/bin/fs_cli
 

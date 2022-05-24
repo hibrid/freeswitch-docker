@@ -24,6 +24,8 @@
       <default-ptimes>
       </default-ptimes>
       <settings>
+        <param name="rtp-start-port" value="64535" />
+        <param name="rtp-end-port" value="65535" />
         <param name="colorize-console" value="true"/>
         <param name="dialplan-timestamps" value="false"/>
         <param name="max-db-handles" value="50"/>
@@ -68,7 +70,7 @@
     <configuration name="event_socket.conf" description="Socket Client">
       <settings>
         <param name="nat-map" value="false"/>
-        <param name="listen-ip" value="::"/>
+        <param name="listen-ip" value="0.0.0.0"/>
         <param name="listen-port" value="8021"/>
         <param name="password" value="ClueCon"/>
         <!--<param name="apply-inbound-acl" value="loopback.auto"/>-->
@@ -130,6 +132,19 @@
     </configuration>
   </section>
   <section name="dialplan" description="Regex/XML Dialplan">
+    <context name="default">
+
+    <extension name="Local_Extension">
+
+      <condition field="destination_number" expression="^(10[01][0-9])$">
+
+        <action application="bridge" data="user/$1@${domain_name}"/>
+
+      </condition>
+
+    </extension>
+
+  </context>
   </section>
   <section name="chatplan" description="Regex/XML Chatplan">
   </section>
@@ -142,6 +157,55 @@
       <groups>
         <group name="default">
           <users>
+           <user id="1001">
+              <params>
+                <param name="password" value="test1001"/>
+                <param name="vm-password" value="1001"/>
+              </params>
+              <variables>
+                <variable name="toll_allow" value="domestic,international,local"/>
+                <variable name="accountcode" value="1001"/>
+                <variable name="user_context" value="default"/>
+                <variable name="effective_caller_id_name" value="Extension 1001"/>
+                <variable name="effective_caller_id_number" value="1001"/>
+                <variable name="outbound_caller_id_name" value="$${outbound_caller_name}"/>
+                <variable name="outbound_caller_id_number" value="$${outbound_caller_id}"/>
+                <variable name="callgroup" value="techsupport"/>
+              </variables>
+            </user>
+            <user id="1000">
+              <params>
+                <param name="password" value="test1000"/>
+                <param name="vm-password" value="1000"/>
+              </params>
+              <variables>
+                <variable name="toll_allow" value="domestic,international,local"/>
+                <variable name="accountcode" value="1000"/>
+                <variable name="user_context" value="default"/>
+                <variable name="effective_caller_id_name" value="Extension 1000"/>
+                <variable name="effective_caller_id_number" value="1000"/>
+                <variable name="outbound_caller_id_name" value="$${outbound_caller_name}"/>
+                <variable name="outbound_caller_id_number" value="$${outbound_caller_id}"/>
+                <variable name="callgroup" value="techsupport"/>
+              </variables>
+            </user>
+           
+            <user id="1002">
+              <params>
+                <param name="password" value="test1001"/>
+                <param name="vm-password" value="1001"/>
+              </params>
+              <variables>
+                <variable name="toll_allow" value="domestic,international,local"/>
+                <variable name="accountcode" value="1002"/>
+                <variable name="user_context" value="default"/>
+                <variable name="effective_caller_id_name" value="Extension 1002"/>
+                <variable name="effective_caller_id_number" value="1002"/>
+                <variable name="outbound_caller_id_name" value="$${outbound_caller_name}"/>
+                <variable name="outbound_caller_id_number" value="$${outbound_caller_id}"/>
+                <variable name="callgroup" value="techsupport"/>
+              </variables>
+            </user>
           </users>
         </group>
       </groups>

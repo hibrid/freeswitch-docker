@@ -1,6 +1,6 @@
 <include>
-  <X-PRE-PROCESS cmd="set" data="domain=mydomain.com"/>
-  <X-PRE-PROCESS cmd="set" data="default_password=1234"/>
+  <X-PRE-PROCESS cmd="set" data="domain=10.147.19.69"/>
+  <X-PRE-PROCESS cmd="set" data="default_password=TestingGilbert"/>
   <X-PRE-PROCESS cmd="set" data="global_codec_prefs=OPUS,PCMU"/>
   <X-PRE-PROCESS cmd="set" data="disable_system_api_commands=true"/>
   <X-PRE-PROCESS cmd="set" data="au-ring=%(400,200,383,417);%(400,2000,383,417)"/>
